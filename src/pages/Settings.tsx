@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { jobBoards } from '../services/jobBoards'
 import { loadSettings, saveSettings } from '../utils/storage'
 import type { UserSettings } from '../types/job'
