@@ -4,6 +4,8 @@
 
 JobScout is a lightweight job-search utility that turns a list of job titles into direct search links across multiple job boards. Add your titles, choose your boards and location, and JobScout handles the rest.
 
+🌐 **[Live Demo](https://JobScout-za.vercel.app/)**
+
 ## ✨ Features
 
 * Add multiple job titles at once.
