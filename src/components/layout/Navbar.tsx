@@ -10,7 +10,8 @@ export default function Navbar() {
   return (
     <nav className="bg-white shadow-sm">
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
-        <div className="flex items-center gap-2">
+     <NavLink to={navItems.at(0)!.to}>
+   <div className="flex items-center gap-2">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" className="w-7 h-7">
     <circle cx="28" cy="28" r="22" fill="none" stroke="#4F46E5" strokeWidth="5"/>
     <polygon points="28,10 32,28 28,46 24,28" fill="#4F46E5"/>
@@ -21,7 +22,7 @@ export default function Navbar() {
     <line x1="44" y1="44" x2="56" y2="56" stroke="#4F46E5" strokeWidth="6" strokeLinecap="round"/>
   </svg>
   <span className="text-lg sm:text-xl font-semibold text-gray-800">JobScout</span>
-</div>
+</div></NavLink>
         <ul className="flex space-x-2 sm:space-x-4 overflow-x-auto">
   {navItems.map((item) => (
     <li key={item.to} className="flex-shrink-0">
