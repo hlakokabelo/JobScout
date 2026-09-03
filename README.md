@@ -43,7 +43,7 @@ JobScout is a lightweight job-search utility that turns a list of job titles int
 ### Installation
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/hlakokabelo/JobScout
 cd jobscout
 npm install
 npm run dev
