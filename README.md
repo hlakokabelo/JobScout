@@ -8,37 +8,38 @@ JobScout is a lightweight job-search utility that turns a list of job titles int
 
 ## ✨ Features
 
-* Add multiple job titles at once.
-* Automatically trim, clean, and deduplicate titles.
-* Generate searches for:
+- Add multiple job titles at once.
+- Automatically trim, clean, and deduplicate titles.
+- Generate searches for:
 
-  * Indeed
-  * LinkedIn
-  * PNet
-  * Careers24
-* Optional location filtering.
-* Enable or disable job boards in Settings.
-* Save titles and preferences with `localStorage`.
-* Manage or clear saved searches.
-* Responsive across mobile, tablet, and desktop.
-* Vitest tests for URL generation.
+  - Indeed
+  - LinkedIn
+  - PNet
+  - Careers24
+
+- Optional location filtering.
+- Enable or disable job boards in Settings.
+- Save titles and preferences with `localStorage`.
+- Manage or clear saved searches.
+- Responsive across mobile, tablet, and desktop.
+- Vitest tests for URL generation.
 
 ## 🛠️ Tech Stack
 
-* React + TypeScript
-* Vite
-* Tailwind CSS
-* React Router
-* Vitest
-* `localStorage`
-* No backend or database required.
+- React + TypeScript
+- Vite
+- Tailwind CSS
+- React Router
+- Vitest
+- `localStorage`
+- No backend or database required.
 
 ## 🚀 Getting Started
 
 ### Prerequisites
 
-* Node.js 16+
-* npm 7+
+- Node.js 16+
+- npm 7+
 
 ### Installation
 
@@ -79,12 +80,12 @@ User preferences and searches are persisted through a small `localStorage` utili
 
 ## 🔮 Planned
 
-* Search groups and categories
-* Application tracking
-* Search history
-* Favorite job titles
-* Multiple locations and remote filters
-* Preset title lists
+- Search groups and categories
+- Application tracking
+- Search history
+- Favorite job titles
+- Multiple locations and remote filters
+- Preset title lists
 
 ## 📄 License
 

@@ -1,49 +1,58 @@
-import { useState } from 'react'
-import { loadJobTitles, loadSettings, deleteJobTitle, clearJobTitles } from '../utils/storage'
-import { jobBoards } from '../services/jobBoards'
-import JobSearchCard from '../components/jobs/JobSearchCard'
-import type { JobTitle } from '../types/job'
+import { useState } from "react";
+import {
+  loadJobTitles,
+  loadSettings,
+  deleteJobTitle,
+  clearJobTitles,
+} from "../utils/storage";
+import { jobBoards } from "../services/jobBoards";
+import JobSearchCard from "../components/jobs/JobSearchCard";
+import type { JobTitle } from "../types/job";
 
 export default function Searches() {
-  const [titles, setTitles] = useState<JobTitle[]>(() => loadJobTitles())
-  const settings = loadSettings()
+  const [titles, setTitles] = useState<JobTitle[]>(() => loadJobTitles());
+  const settings = loadSettings();
 
   const activeBoards = jobBoards.filter((board) =>
-    settings.selectedBoardIds.includes(board.id)
-  )
+    settings.selectedBoardIds.includes(board.id),
+  );
 
   const handleDelete = (id: string) => {
-    deleteJobTitle(id)
-    setTitles((prev) => prev.filter((title) => title.id !== id))
-  }
+    deleteJobTitle(id);
+    setTitles((prev) => prev.filter((title) => title.id !== id));
+  };
 
   const handleClearAll = () => {
-    if (window.confirm('Are you sure you want to delete all saved job titles?')) {
-      clearJobTitles()
-      setTitles([])
+    if (
+      window.confirm("Are you sure you want to delete all saved job titles?")
+    ) {
+      clearJobTitles();
+      setTitles([]);
     }
-  }
+  };
 
   return (
     <div>
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-  <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Your Job Searches</h1>
-  {titles.length > 0 && (
-    <button
-      onClick={handleClearAll}
-      className="self-start sm:self-auto px-3 py-1.5 text-sm font-medium text-red-600 bg-white border border-red-300 rounded-md hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
-    >
-      Clear all
-    </button>
-  )}
-</div>
+        <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">
+          Your Job Searches
+        </h1>
+        {titles.length > 0 && (
+          <button
+            onClick={handleClearAll}
+            className="self-start sm:self-auto px-3 py-1.5 text-sm font-medium text-red-600 bg-white border border-red-300 rounded-md hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+          >
+            Clear all
+          </button>
+        )}
+      </div>
 
       {titles.length === 0 ? (
         <p className="mt-2 text-gray-600">
-          No job titles yet. Go to the{' '}
+          No job titles yet. Go to the{" "}
           <a href="/" className="text-indigo-600 hover:underline">
             Home
-          </a>{' '}
+          </a>{" "}
           page to add some.
         </p>
       ) : (
@@ -60,5 +69,5 @@ export default function Searches() {
         </div>
       )}
     </div>
-  )
+  );
 }

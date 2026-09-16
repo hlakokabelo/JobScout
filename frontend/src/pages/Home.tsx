@@ -1,37 +1,36 @@
-
-import { useState, useMemo } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { saveJobTitles, loadJobTitles } from '../utils/storage'
-import type { JobTitle } from '../types/job'
+import { useState, useMemo } from "react";
+import { useNavigate } from "react-router-dom";
+import { saveJobTitles, loadJobTitles } from "../utils/storage";
+import type { JobTitle } from "../types/job";
 
 export default function Home() {
-  const [input, setInput] = useState('')
-  const navigate = useNavigate()
+  const [input, setInput] = useState("");
+  const navigate = useNavigate();
 
   // Parse input into unique, non-empty titles
   const parsedTitles = useMemo(() => {
     const titles = input
-      .split('\n')
+      .split("\n")
       .map((line) => line.trim())
-      .filter((line) => line.length > 0)
+      .filter((line) => line.length > 0);
 
-    return Array.from(new Set(titles))
-  }, [input])
+    return Array.from(new Set(titles));
+  }, [input]);
 
-  const titleCount = parsedTitles.length
-  const isTooLarge = titleCount > 100
+  const titleCount = parsedTitles.length;
+  const isTooLarge = titleCount > 100;
 
-   const handleGenerate = (event: React.FormEvent) => {
-    event.preventDefault()
-    if (titleCount === 0) return
+  const handleGenerate = (event: React.FormEvent) => {
+    event.preventDefault();
+    if (titleCount === 0) return;
 
     // Load existing titles from storage
-    const existingTitles = loadJobTitles()
+    const existingTitles = loadJobTitles();
 
     // Create a Set of existing titles (lowercased) for quick lookup
     const existingTitleSet = new Set(
-      existingTitles.map((t) => t.title.toLowerCase())
-    )
+      existingTitles.map((t) => t.title.toLowerCase()),
+    );
 
     // Filter new titles to those not already present
     const newTitles = parsedTitles
@@ -39,21 +38,21 @@ export default function Home() {
       .map((title) => ({
         id: crypto.randomUUID(),
         title,
-      }))
+      }));
 
     // Prepend new titles to existing ones
-    const combinedTitles: JobTitle[] = [...newTitles, ...existingTitles]
+    const combinedTitles: JobTitle[] = [...newTitles, ...existingTitles];
 
     // Save combined list
-    saveJobTitles(combinedTitles)
+    saveJobTitles(combinedTitles);
 
     // Navigate to Searches page
-    navigate('/searches')
-  }
+    navigate("/searches");
+  };
 
   const handleClear = () => {
-    setInput('')
-  }
+    setInput("");
+  };
 
   return (
     <div>
@@ -63,8 +62,8 @@ export default function Home() {
       </h1>
 
       <p className="mt-2 max-w-2xl text-gray-600">
-        Paste your job titles below — one per line — and we’ll generate
-        search links for your favourite job boards.
+        Paste your job titles below — one per line — and we’ll generate search
+        links for your favourite job boards.
       </p>
 
       {/* Job title form */}
@@ -81,9 +80,7 @@ export default function Home() {
             Job Titles
           </label>
 
-          <span className="text-xs text-gray-400">
-            One per line
-          </span>
+          <span className="text-xs text-gray-400">One per line</span>
         </div>
 
         {/* Textarea */}
@@ -120,14 +117,13 @@ Full Stack Developer`}
         <div className="mt-3 flex flex-col gap-1 text-sm sm:flex-row sm:items-center sm:justify-between">
           <span className="text-gray-500">
             {titleCount > 0
-              ? `${titleCount} unique title${titleCount === 1 ? '' : 's'}`
-              : 'No titles entered yet'}
+              ? `${titleCount} unique title${titleCount === 1 ? "" : "s"}`
+              : "No titles entered yet"}
           </span>
 
           {isTooLarge && (
             <span className="text-amber-600">
-              That&apos;s a lot of titles! Consider splitting them into
-              groups.
+              That&apos;s a lot of titles! Consider splitting them into groups.
             </span>
           )}
         </div>
@@ -182,6 +178,5 @@ Full Stack Developer`}
         </div>
       </form>
     </div>
-  )
+  );
 }
-

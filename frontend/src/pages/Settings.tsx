@@ -1,32 +1,32 @@
-import { useState } from 'react'
-import { jobBoards } from '../services/jobBoards'
-import { loadSettings, saveSettings } from '../utils/storage'
-import type { UserSettings } from '../types/job'
+import { useState } from "react";
+import { jobBoards } from "../services/jobBoards";
+import { loadSettings, saveSettings } from "../utils/storage";
+import type { UserSettings } from "../types/job";
 
 export default function Settings() {
-  const [settings, setSettings] = useState<UserSettings>(() => loadSettings())
-  const [saved, setSaved] = useState(false)
+  const [settings, setSettings] = useState<UserSettings>(() => loadSettings());
+  const [saved, setSaved] = useState(false);
 
   const handleBoardToggle = (boardId: string) => {
     setSettings((prev) => {
-      const isSelected = prev.selectedBoardIds.includes(boardId)
+      const isSelected = prev.selectedBoardIds.includes(boardId);
       const newSelected = isSelected
         ? prev.selectedBoardIds.filter((id) => id !== boardId)
-        : [...prev.selectedBoardIds, boardId]
-      return { ...prev, selectedBoardIds: newSelected }
-    })
-  }
+        : [...prev.selectedBoardIds, boardId];
+      return { ...prev, selectedBoardIds: newSelected };
+    });
+  };
 
   const handleLocationChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSettings((prev) => ({ ...prev, location: e.target.value }))
-  }
+    setSettings((prev) => ({ ...prev, location: e.target.value }));
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    saveSettings(settings)
-    setSaved(true)
-    setTimeout(() => setSaved(false), 2000)
-  }
+    e.preventDefault();
+    saveSettings(settings);
+    setSaved(true);
+    setTimeout(() => setSaved(false), 2000);
+  };
 
   return (
     <div>
@@ -56,7 +56,10 @@ export default function Settings() {
         </fieldset>
 
         <div className="mt-4">
-          <label htmlFor="location" className="block text-sm font-medium text-gray-700">
+          <label
+            htmlFor="location"
+            className="block text-sm font-medium text-gray-700"
+          >
             Location
           </label>
           <input
@@ -75,10 +78,8 @@ export default function Settings() {
         >
           Save Settings
         </button>
-        {saved && (
-          <span className="ml-3 text-sm text-green-600">Saved!</span>
-        )}
+        {saved && <span className="ml-3 text-sm text-green-600">Saved!</span>}
       </form>
     </div>
-  )
+  );
 }
